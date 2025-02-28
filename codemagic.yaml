@@ -7,7 +7,6 @@ workflows:
       - name: Install CocoaPods dependencies
         script: |
           brew install cocoapods
-    build:
-      ios:
-        build_configuration: release
-        export_method: development
+    ios:
+      configuration: release
+      export_method: development
