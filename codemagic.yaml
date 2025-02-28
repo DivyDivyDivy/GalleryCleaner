@@ -1,12 +1,13 @@
 workflows:
-  ios:
-    name: iOS build
+  ios_build:
+    name: iOS Build
     environment:
       cocoapods: default
     scripts:
       - name: Install CocoaPods dependencies
         script: |
           brew install cocoapods
-    ios:
-      build_configuration: release
-      export_method: development
+    build:
+      ios:
+        build_configuration: release
+        export_method: development
