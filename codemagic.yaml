@@ -1,15 +1,14 @@
 workflows:
   ios:
     name: iOS build
-    source: https://github.com/DivyDivyDivy/GalleryCleaner.git # Inserisci il tuo repository GitHub
-    macos: true # Usa macOS per la build
+    platform: ios
+    build:
+      ios:
+        configuration: release
+        export_method: development # Usa il profilo di provisioning gratuito
     environment:
-      cocoapods: default # Installa le dipendenze tramite CocoaPods
+      cocoapods: default
     scripts:
       - name: Install CocoaPods dependencies
         script: |
           brew install cocoapods
-    build:
-      ios:
-        build_configuration: release # Configurazione di build (puoi usare 'debug' se vuoi una build di sviluppo)
-        export_method: development # Metodo di esportazione per la firma gratuita
