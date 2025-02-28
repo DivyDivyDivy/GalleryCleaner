@@ -1,6 +1,4 @@
 workflows:
-  ios_build:
-    name: iOS Build
     environment:
       cocoapods: default
     scripts:
