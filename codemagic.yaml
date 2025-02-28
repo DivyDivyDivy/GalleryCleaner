@@ -1,18 +1,18 @@
 workflows:
-  ios-build:
-    name: iOS Build for GalleryCleaner
-    max_build_duration: 120
-    environment:
-      xcode: latest
+  ios:
+    name: iOS build
+    source: https://github.com/DivyDivyDivy/GalleryCleaner.git # Inserisci il tuo repository GitHub
+    macos: true # Usa macOS per la build
+    flutter: false # Se il progetto è solo in Swift, disabilita Flutter
     scripts:
-      - name: Install Dependencies
+      - name: Install CocoaPods dependencies
         script: |
-          pod install || echo "No Podfile found, skipping..."
-      - name: Build iOS App
-        script: |
-          xcodebuild -workspace GalleryCleaner.xcworkspace -scheme GalleryCleaner -sdk iphoneos -configuration Release archive -archivePath build/GalleryCleaner.xcarchive
-      - name: Export IPA
-        script: |
-          xcodebuild -exportArchive -archivePath build/GalleryCleaner.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/
-    artifacts:
-      - build/*.ipa
+          brew install cocoapods
+    environment:
+      cocoapods: default # Installa le dipendenze tramite CocoaPods
+    build:
+      ios:
+        build_configuration: release # Configurazione di build (puoi usare 'debug' se vuoi una build di sviluppo)
+        export_method: development # Metodo di esportazione per la firma gratuita
+    publishing:
+      upload_to_testflight: false # Disabilita l'upload su TestFlight (non necessario se non pubblichi)
