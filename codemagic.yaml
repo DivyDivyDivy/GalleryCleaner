@@ -1,14 +1,12 @@
 workflows:
   ios:
     name: iOS build
-    platform: ios
-    build:
-      ios:
-        configuration: release
-        export_method: development # Usa il profilo di provisioning gratuito
     environment:
       cocoapods: default
     scripts:
       - name: Install CocoaPods dependencies
         script: |
           brew install cocoapods
+    ios:
+      build_configuration: release
+      export_method: development
