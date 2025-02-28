@@ -1,4 +1,5 @@
 workflows:
+ios-build:
     environment:
       cocoapods: default
     scripts:
