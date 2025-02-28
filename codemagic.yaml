@@ -1,0 +1,18 @@
+workflows:
+  ios-build:
+    name: iOS Build
+    max_build_duration: 120
+    environment:
+      xcode: latest
+      cocoapods: true
+    scripts:
+      - name: Install Dependencies
+        script: |
+          bundle install
+      - name: Build iOS App
+        script: |
+          xcodebuild -workspace YourApp.xcworkspace -scheme YourScheme -sdk iphoneos -configuration Release archive -archivePath build/YourApp.xcarchive
+    artifacts:
+      - build/ios/ipa/*.ipa
+    publishing:
+      upload_to_testflight: true
